@@ -1,0 +1,13 @@
+1. Explain what a Sequential Scan is. 
+->A sequential scan occurs when the database needs to search through every row of the table to find the requested data. It simply goes through each row of the table one by one to check if the row matches the search condition
+
+2. How to Improve Search Performance Using an Index
+->When you create an index on a column , the database builds a sorted structure of that column's values. This allows it to quickly locate the position of the row containing a specific value without scanning every row.
+
+3. Write the command to create an Index on the email column
+->CREATE INDEX idx_users_email ON users (email);
+
+4.Explain how a B-Tree index helps the database find the value faster.
+->A B-Tree index organizes data in a hierarchical way, where each node in the tree contains a sorted value and points to either another node or a leaf node that holds the actual data.
+
+->The height of the B-Tree is logarithmic, meaning that the time it takes to search for a value is proportional to the logarithm of the number of elements in the tree. This is much faster than a sequential scan, which requires scanning each row.
