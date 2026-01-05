@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.api_router import api_router
 from app.db.base import Base
 from app.db.session import engine
+from sqlmodel import SQLModel
 
 app = FastAPI()
 
@@ -9,6 +10,7 @@ app = FastAPI()
 async def startup():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        await conn.run_sync(SQLModel.metadata.create_all)
 
 
 app.include_router(api_router)
