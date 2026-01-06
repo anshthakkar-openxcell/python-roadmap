@@ -29,7 +29,7 @@ async def get_user_service(db :AsyncSession,user_id:int) ->User:
 
 
     if not user:
-        raise HTTPException(status_code=404,description="User not found")
+        raise HTTPException(status_code=404,detail="User not found")
     
 
     return user
