@@ -4,6 +4,7 @@ from app.db.session import get_db
 from app.schemas.user import UserCreate, UserLogin, Token
 from app.crud.user import create_user, get_user_by_email
 from app.core.security import verify_password, create_access_token, get_current_user
+from fastapi.security import OAuth2PasswordRequestForm
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -29,3 +30,5 @@ async def login_user(user: UserLogin, db: AsyncSession = Depends(get_db)):
 @router.get("/profile")
 async def get_profile(current_user: str = Depends(get_current_user)):
     return {"email": current_user}
+
+
