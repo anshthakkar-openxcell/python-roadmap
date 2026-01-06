@@ -12,6 +12,7 @@ class ProductCreate(ProductBase):
     pass
 
 
+
 class ProductRead(ProductBase):
     id: int
 
