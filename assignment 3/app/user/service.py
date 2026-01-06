@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 from sqlmodel import select
 from fastapi import HTTPException
 
@@ -31,5 +32,17 @@ async def get_user_service(db :AsyncSession,user_id:int) ->User:
     if not user:
         raise HTTPException(status_code=404,detail="User not found")
     
+
+    return user
+
+
+
+
+async def get_user_with_articles_service(db: AsyncSession, user_id: int) -> User:
+    result = await db.execute(select(User).where(User.id == user_id).options(selectinload(User.articles)))
+    user = result.scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
 
     return user

@@ -1,4 +1,4 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field ,Relationship
 from typing import Optional
 
 
@@ -7,6 +7,8 @@ class User(SQLModel, table=True):
     email: str = Field(index=True, unique=True)
     name: str
     bio: Optional[str] = None
+    #
+    articles: list["Article"] = Relationship(back_populates="user")
     
 
 
